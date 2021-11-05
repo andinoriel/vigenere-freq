@@ -43,36 +43,37 @@ fn main() {
         let mut parser = ArgumentParser::new();
         parser.set_description("Frequency analysis of the Vigenere cipher");
 
-        parser.refer(&mut options.filename).add_option(
-            &["-f", "--filename"],
+        parser.refer(&mut options.filename).add_argument(
+            "--filename",
             Store,
             "Filename with a text to cipher",
         );
-        parser.refer(&mut options.key).add_option(
-            &["-k", "--key"],
+        parser.refer(&mut options.key).add_argument(
+            "--key",
             Store,
             "Key for a text to cipher",
         );
-        parser.refer(&mut options.seq_start).add_option(
-            &["--seq-start"],
+        parser.refer(&mut options.seq_start).add_argument(
+            "--seq-start",
             Store,
             "Start value of chars strings sequences",
         );
-        parser.refer(&mut options.seq_end).add_option(
-            &["--seq-end"],
+        parser.refer(&mut options.seq_end).add_argument(
+            "--seq-end",
             Store,
             "End value of chars strings sequences",
         );
-        parser.refer(&mut options.div_start).add_option(
-            &["--div-start"],
+        parser.refer(&mut options.div_start).add_argument(
+            "--div-start",
             Store,
             "Start value of the divisor interval",
         );
-        parser.refer(&mut options.div_end).add_option(
-            &["--div-end"],
+        parser.refer(&mut options.div_end).add_argument(
+            "--div-end",
             Store,
             "End value of the divisor interval",
         );
+
         parser.refer(&mut options.trim_count).add_option(
             &["--trim-count"],
             Store,
