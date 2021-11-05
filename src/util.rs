@@ -35,3 +35,30 @@ impl Util {
         res
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::Util;
+
+    #[test]
+    fn test_get_position() {
+        let comp = 0;
+        let ret = Util::get_position('a');
+
+        assert_eq!(comp, ret);
+    }
+    #[test]
+    fn test_get_letter() {
+        let comp = 'a';
+        let ret = Util::get_letter(0);
+
+        assert_eq!(comp, ret);
+    }
+    #[test]
+    fn test_vigenere_cipher() {
+        let comp = "bdf";
+        let ret = Util::vigenere_cipher("abc", "abc");
+
+        assert_eq!(comp, ret);
+    }
+}

@@ -105,3 +105,84 @@ impl fmt::Display for DataSet {
         Ok(())
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::DataSet;
+
+    #[test]
+    fn test_sort() {
+        let encrypted = "abcab";
+
+        let mut ds = DataSet::new();
+        ds.analyze(&encrypted, 2);
+
+        ds.sort();
+
+        assert_eq!(ds.data[0].1.count, 2);
+        assert_eq!(ds.data[1].1.count, 1);
+        assert_eq!(ds.data[2].1.count, 1);
+    }
+
+    #[test]
+    fn test_trim() {
+        let encrypted = "abcab";
+
+        let mut ds = DataSet::new();
+        ds.analyze(&encrypted, 2);
+
+        // trimming sequences and leaving only
+        // those that occurred in the encrypted text
+        // more then 1 times
+        ds.trim(1);
+
+        assert!(ds.data[0].1.lengths.len() > 0);
+    }
+
+    #[test]
+    fn test_crop() {
+        let encrypted = "abcab";
+
+        let mut ds = DataSet::new();
+        ds.analyze(&encrypted, 2);
+
+        // leaving only 1 finding sequence
+        // in the dataset
+        ds.crop(1);
+
+        assert_eq!(ds.data.len(), 1);
+    }
+
+    #[test]
+    fn test_analyze() {
+        let encrypted = "abcab";
+
+        let mut ds = DataSet::new();
+        ds.analyze(&encrypted, 2);
+
+        // finding "ab" and test
+        for i in &ds.data {
+            if i.0 == "ab" {
+                assert_eq!(i.1.lengths, [3]);
+                assert_eq!(i.1.frequency, 0.8);
+            }
+        }
+    }
+    #[test]
+    fn test_get_divide_data() {
+        let encrypted = "abcab";
+
+        let mut ds = DataSet::new();
+        ds.analyze(&encrypted, 2);
+
+        // make sure that the distance between "ab" in
+        // the encrypted text is divisible by 3 and
+        // it happens exactly 1 times
+        // (2, x, y)
+        // (3, x, y) -> [1] x % 3 == 0 -> 1 times
+        // (4, x, y)
+        // (5, x, y)
+        // (6, x, y)
+        assert_eq!(ds.get_divide_data(2..7)[1].1, 1);
+    }
+}
