@@ -17,24 +17,20 @@ $ cargo build --release
 ## Usage
 
 ```
-./vigenere-freq [OPTIONS] [--FILENAME] [--KEY] [--SEQ-START] [--SEQ-END] [--DIV-START] [--DIV-END]
+./vigenere-freq [OPTIONS]
 
 Frequency analysis of the Vigenere cipher
 
-Positional arguments:
-  --filename            Filename with a text to cipher
-  --key                 Key for a text to cipher
-  --seq-start           Start value of chars strings sequences
-  --seq-end             End value of chars strings sequences
-  --div-start           Start value of the divisor interval
-  --div-end             End value of the divisor interval
-
 Optional arguments:
   -h,--help             Show this help message and exit
-  --trim-count TRIM_COUNT
-                        Threshold value for found sequences
-  --crop-count CROP_COUNT
-                        How much data to crop
+  -f,--file F           File with a text to cipher
+  -k,--key K            Key for a text to cipher
+  --seq-start SS        Start value of chars strings sequences
+  --seq-end SE          End value of chars strings sequences
+  --div-start DS        Start value of the divisor interval
+  --div-end DE          End value of the divisor interval
+  --trim-count TC       Threshold value for found sequences
+  --crop-count CC       How much data to crop
   -v,--verbose          Be more verbose
 ```
 
