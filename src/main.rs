@@ -8,7 +8,7 @@ use data::DataSet;
 use util::Util;
 
 struct Options {
-    filename: String,
+    file: String,
     key: String,
 
     seq_start: usize,
@@ -24,7 +24,7 @@ struct Options {
 
 fn main() {
     let mut options = Options {
-        filename: "".to_string(),
+        file: "".to_string(),
         key: "".to_string(),
 
         seq_start: 0,
@@ -43,57 +43,57 @@ fn main() {
         let mut parser = ArgumentParser::new();
         parser.set_description("Frequency analysis of the Vigenere cipher");
 
-        parser.refer(&mut options.filename).add_argument(
-            "--filename",
+        parser.refer(&mut options.file).add_option(
+            &["-f", "--file"],
             Store,
-            "Filename with a text to cipher",
-        );
-        parser.refer(&mut options.key).add_argument(
-            "--key",
+            "File with a text to cipher",
+        ).required().metavar("F");
+        parser.refer(&mut options.key).add_option(
+            &["-k", "--key"],
             Store,
             "Key for a text to cipher",
-        );
-        parser.refer(&mut options.seq_start).add_argument(
-            "--seq-start",
+        ).required().metavar("K");
+        parser.refer(&mut options.seq_start).add_option(
+            &["--seq-start"],
             Store,
             "Start value of chars strings sequences",
-        );
-        parser.refer(&mut options.seq_end).add_argument(
-            "--seq-end",
+        ).required().metavar("SS");
+        parser.refer(&mut options.seq_end).add_option(
+            &["--seq-end"],
             Store,
             "End value of chars strings sequences",
-        );
-        parser.refer(&mut options.div_start).add_argument(
-            "--div-start",
+        ).required().metavar("SE");
+        parser.refer(&mut options.div_start).add_option(
+            &["--div-start"],
             Store,
             "Start value of the divisor interval",
-        );
-        parser.refer(&mut options.div_end).add_argument(
-            "--div-end",
+        ).required().metavar("DS");
+        parser.refer(&mut options.div_end).add_option(
+            &["--div-end"],
             Store,
             "End value of the divisor interval",
-        );
+        ).required().metavar("DE");
 
         parser.refer(&mut options.trim_count).add_option(
             &["--trim-count"],
             Store,
             "Threshold value for found sequences",
-        );
+        ).metavar("TC");
         parser.refer(&mut options.crop_count).add_option(
             &["--crop-count"],
             Store,
             "How much data to crop",
-        );
+        ).metavar("CC");
         parser.refer(&mut options.verbose).add_option(
             &["-v", "--verbose"],
             StoreTrue,
             "Be more verbose",
-        );
+        ).metavar("V");
 
         parser.parse_args_or_exit();
     }
 
-    let text = Util::load_file(&options.filename);
+    let text = Util::load_file(&options.file);
     let encrypted = Util::vigenere_cipher(&text, &options.key);
 
     for i in options.seq_start..options.seq_end + 1 {
