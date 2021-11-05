@@ -2,7 +2,13 @@
 name = "vigenere-freq"
 version = "0.1.0"
 edition = "2021"
+authors = ["andinoriel <simonnikolaj20@gmail.com>"]
+description = "Frequency analysis of the Vigenere cipher"
+homepage = "https://github.com/andinoriel/vigenere-freq"
+repository = "https://github.com/andinoriel/vigenere-freq"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+argparse = "0.2.2"
