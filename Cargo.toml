@@ -1,6 +1,6 @@
 [package]
 name = "vigenere-freq"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 authors = ["andinoriel <simonnikolaj20@gmail.com>"]
 description = "Frequency analysis of the Vigenere cipher"
