@@ -33,7 +33,7 @@ fn main() {
         div_end: 0,
 
         trim_count: 0,
-        crop_count: 0,
+        crop_count: usize::MAX,
 
         verbose: false,
     };

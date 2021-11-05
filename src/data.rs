@@ -31,7 +31,9 @@ impl DataSet {
     /// leave only `count` sequences
     /// in the dataset
     pub fn crop(&mut self, count: usize) {
-        self.data.drain(count..self.data.len());
+        if count != usize::MAX {
+            self.data.drain(count..self.data.len());
+        }
     }
 
     /// find all sequences of length `len`,
