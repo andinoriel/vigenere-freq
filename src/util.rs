@@ -9,16 +9,20 @@ impl Util {
         's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     ];
 
+    /// get position by letter in the alphabet
     fn get_position(letter: char) -> usize {
         Util::ALPHABET.iter().position(|&c| c == letter).unwrap()
     }
+    /// get a letter by its position in the alphabet
     fn get_letter(position: usize) -> char {
         Util::ALPHABET[position % Util::ALPHABET.len()]
     }
 
+    /// laod file with a given path
     pub fn load_file(path: &str) -> String {
         fs::read_to_string(path).unwrap().parse().unwrap()
     }
+    /// apply Vigenere cipher to text
     pub fn vigenere_cipher(text: &str, key: &str) -> String {
         let lower_text = text.to_lowercase();
         let key = key.to_lowercase();

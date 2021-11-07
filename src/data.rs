@@ -22,14 +22,13 @@ impl DataSet {
         self.data.sort_by(|a, b| b.1.count.cmp(&a.1.count));
     }
 
-    /// trim data and leave only those that
-    /// occurred more than `val` + 1 times
+    /// trim data, leaving only those whose
+    /// char sequence occur more than `val` times
     pub fn trim(&mut self, val: usize) {
         self.data.retain(|x| x.1.count > val);
     }
 
-    /// leave only `count` sequences
-    /// in the dataset
+    /// leave only `count` data in the dataset
     pub fn crop(&mut self, count: usize) {
         if count != usize::MAX {
             self.data.drain(count..self.data.len());
@@ -65,8 +64,8 @@ impl DataSet {
         self.data = frequencies.into_iter().collect();
     }
 
-    /// get data about divisibles the divisors of the calculated distances
-    /// for sequences in the `range` of divisors
+    /// get divisibility data of the calculated distances
+    /// for char sequences in the `range` of divisors
     pub fn get_divide_data(&self, range: std::ops::Range<usize>) -> Vec<(usize, usize, usize)> {
         let mut result: Vec<(usize, usize, usize)> = Vec::new();
         let mut total = 0;

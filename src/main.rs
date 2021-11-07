@@ -43,52 +43,69 @@ fn main() {
         let mut parser = ArgumentParser::new();
         parser.set_description("Frequency analysis of the Vigenere cipher");
 
-        parser.refer(&mut options.file).add_option(
-            &["-f", "--file"],
-            Store,
-            "File with a text to cipher",
-        ).required().metavar("F");
-        parser.refer(&mut options.key).add_option(
-            &["-k", "--key"],
-            Store,
-            "Key for a text to cipher",
-        ).required().metavar("K");
-        parser.refer(&mut options.seq_start).add_option(
-            &["--seq-start"],
-            Store,
-            "Start value of chars strings sequences",
-        ).required().metavar("SS");
-        parser.refer(&mut options.seq_end).add_option(
-            &["--seq-end"],
-            Store,
-            "End value of chars strings sequences",
-        ).required().metavar("SE");
-        parser.refer(&mut options.div_start).add_option(
-            &["--div-start"],
-            Store,
-            "Start value of the divisor interval",
-        ).required().metavar("DS");
-        parser.refer(&mut options.div_end).add_option(
-            &["--div-end"],
-            Store,
-            "End value of the divisor interval",
-        ).required().metavar("DE");
+        parser
+            .refer(&mut options.verbose)
+            .add_option(&["-v", "--verbose"], StoreTrue, "Detailed output")
+            .metavar("V");
+        parser
+            .refer(&mut options.file)
+            .add_option(&["-f", "--file"], Store, "File with a text to cipher")
+            .required()
+            .metavar("F");
+        parser
+            .refer(&mut options.key)
+            .add_option(&["-k", "--key"], Store, "Key for a text to cipher")
+            .required()
+            .metavar("K");
+        parser
+            .refer(&mut options.seq_start)
+            .add_option(
+                &["--seq-start"],
+                Store,
+                "Start value of lengths of chars sequences",
+            )
+            .required()
+            .metavar("SS");
+        parser
+            .refer(&mut options.seq_end)
+            .add_option(
+                &["--seq-end"],
+                Store,
+                "End value of lengths of chars sequences",
+            )
+            .required()
+            .metavar("SE");
+        parser
+            .refer(&mut options.div_start)
+            .add_option(
+                &["--div-start"],
+                Store,
+                "Start value of the divisor interval",
+            )
+            .required()
+            .metavar("DS");
+        parser
+            .refer(&mut options.div_end)
+            .add_option(&["--div-end"], Store, "End value of the divisor interval")
+            .required()
+            .metavar("DE");
 
-        parser.refer(&mut options.trim_count).add_option(
-            &["--trim-count"],
-            Store,
-            "Threshold value for found sequences",
-        ).metavar("TC");
-        parser.refer(&mut options.crop_count).add_option(
-            &["--crop-count"],
-            Store,
-            "How much data to crop",
-        ).metavar("CC");
-        parser.refer(&mut options.verbose).add_option(
-            &["-v", "--verbose"],
-            StoreTrue,
-            "Be more verbose",
-        ).metavar("V");
+        parser
+            .refer(&mut options.trim_count)
+            .add_option(
+                &["--trim-count"],
+                Store,
+                "Leave only those data that char sequence occur more than specified value",
+            )
+            .metavar("TC");
+        parser
+            .refer(&mut options.crop_count)
+            .add_option(
+                &["--crop-count"],
+                Store,
+                "Value that indicating how much data to leave for the resulting sample",
+            )
+            .metavar("CC");
 
         parser.parse_args_or_exit();
     }
