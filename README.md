@@ -23,15 +23,17 @@ Frequency analysis of the Vigenere cipher
 
 Optional arguments:
   -h,--help             Show this help message and exit
+  -v,--verbose          Detailed output
   -f,--file F           File with a text to cipher
   -k,--key K            Key for a text to cipher
-  --seq-start SS        Start value of chars strings sequences
-  --seq-end SE          End value of chars strings sequences
+  --seq-start SS        Start value of lengths of chars sequences
+  --seq-end SE          End value of lengths of chars sequences
   --div-start DS        Start value of the divisor interval
   --div-end DE          End value of the divisor interval
-  --trim-count TC       Threshold value for found sequences
-  --crop-count CC       How much data to crop
-  -v,--verbose          Be more verbose
+  --trim-count TC       Leave only those data that char sequence occur more
+                        than specified value
+  --crop-count CC       Value that indicating how much data to leave for the
+                        resulting sample
 ```
 
 ## License
