@@ -11,7 +11,6 @@ pub struct DataSet {
     data: Vec<(String, Data)>,
 }
 
-#[allow(dead_code)]
 impl DataSet {
     pub fn new() -> Self {
         DataSet { data: vec![] }
@@ -90,7 +89,6 @@ impl DataSet {
     }
 }
 
-#[allow(dead_code)]
 impl fmt::Display for DataSet {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         for i in &self.data {
